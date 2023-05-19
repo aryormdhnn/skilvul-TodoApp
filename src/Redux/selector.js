@@ -8,7 +8,7 @@ export const getTodosState = (store, visibilityFiler) =>{
         case VISIBILITY_FILTERS.COMPLETED:{
             return store.todos.filter(todo => todo.completed);
         }
-        case VISIBILITY_FILTERS.INCOMPLETE:{
+        case VISIBILITY_FILTERS.ACTIVE:{
             return store.todos.filter(todo => !todo.completed);
         }
         default:{
