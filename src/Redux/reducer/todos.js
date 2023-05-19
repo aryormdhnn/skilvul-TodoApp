@@ -1,17 +1,8 @@
 import { ADD_TODO, TOGGLE_TODO, SET_FILTER } from '../actionTypes';
 
 const initialState = {
-    todos: [{
-        id: 1,
-        text: 'Test Redux',
-        completed: true,
-    },
-    {
-        id: 2,
-        text: 'Test Redux 2',
-        completed: false,
-    },
-]}
+    todos: []
+    }
 
 const todos = (state = initialState, action) => {
     switch (action.type) {
