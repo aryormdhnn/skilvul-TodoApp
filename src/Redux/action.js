@@ -9,3 +9,13 @@ export const addTodo = text => ({
         text
     }
 })
+
+export const toggleTodo = id => ({
+    type: TOGGLE_TODO,
+    payload: { id }
+})
+
+export const setFilter = filter => ({
+    type: SET_FILTER,
+    payload: { filter: filter }
+})
