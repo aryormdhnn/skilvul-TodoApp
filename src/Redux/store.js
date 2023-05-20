@@ -1,4 +1,9 @@
-import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './reducer';
 
-export default createStore(rootReducer);
+const store = configureStore({
+    // Konfigurasi tambahan (opsional)
+  });
+  
+
+export default store;(rootReducer);
