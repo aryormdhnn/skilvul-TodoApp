@@ -11,9 +11,9 @@ ReactDOM
     .render(
         <Provider store={store}>
             <ChakraProvider>
-                {/* <React.StrictMode> */}
+                <React.StrictMode>
                     <App/>
-                {/* </React.StrictMode>, */}
+                </React.StrictMode>,
             </ChakraProvider>
         </Provider>
 

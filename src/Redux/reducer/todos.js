@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO, SET_FILTER } from '../actionTypes';
+import { ADD_TODO, TOGGLE_TODO} from '../actionTypes';
 
 const initialState = {
     todos: []
@@ -15,15 +15,11 @@ const todos = (state = initialState, action) => {
                 ]
             }
         }
-     
             case TOGGLE_TODO:{
                  const { id } = action.payload;
                const todos = state.todos.map(obj => obj.id === id ? { ...obj, completed: !obj.completed } : obj)
             return { todos }
-            }
-              
-
-
+            }      
         default:{
             return state;
         }
