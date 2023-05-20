@@ -13,7 +13,7 @@ ReactDOM
             <ChakraProvider>
                 <React.StrictMode>
                     <App/>
-                </React.StrictMode>,
+                </React.StrictMode>
             </ChakraProvider>
         </Provider>
 
