@@ -1,26 +1,71 @@
-import {Box, Checkbox, Text} from "@chakra-ui/react"
-import {useEffect, useState} from "react"
-import {useDispatch} from "react-redux"
-import {toggleTodo} from "../Redux/action"
+import { Box, Checkbox, Text, Flex, IconButton } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { toggleTodo, editTodo, deleteTodo } from "../Redux/action";
+import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
-export const Todo = ({todo}) => {
-    const dispatch = useDispatch()
-    const [cheked, setCheked] = useState(false);
-    const handleCheked = () => dispatch(toggleTodo(todo.id))
+export const Todo = ({ todo }) => {
+  const dispatch = useDispatch();
+  const [checked, setChecked] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editText, setEditText] = useState(todo.text);
 
-    useEffect(() => {
-        setCheked(todo.completed)
-    }, [todo])
+  const handleChecked = () => dispatch(toggleTodo(todo.id));
 
-    return (
-        <Box mb={1} bgColor="lightblue" p={2}>
-            <Checkbox onChange={handleCheked} colorScheme="teal" isChecked={cheked}>
-                <Text as={todo.completed && "del"}>
-                    {todo.text}
-                </Text>
-            </Checkbox>
-        </Box>
-    )
-}
+  const handleEdit = () => {
+    if (isEditing) {
+      dispatch(editTodo(todo.id, editText));
+    }
+    setIsEditing(!isEditing);
+  };
 
-export default Todo
+  const handleDelete = () => dispatch(deleteTodo(todo.id));
+
+  useEffect(() => {
+    setChecked(todo.completed);
+  }, [todo]);
+
+  return (
+    <Box mb={1} bgColor="lightblue" p={2}>
+      {!isEditing ? (
+        <Flex alignItems="center">
+          <Checkbox
+            onChange={handleChecked}
+            colorScheme="teal"
+            isChecked={checked}
+          >
+            <Text as={todo.completed && "del"}>{todo.text}</Text>
+          </Checkbox>
+          <IconButton
+            icon={<EditIcon />}
+            onClick={handleEdit}
+            ml={2}
+            variant="ghost"
+          />
+          <IconButton
+            icon={<DeleteIcon />}
+            onClick={handleDelete}
+            ml={2}
+            variant="ghost"
+          />
+        </Flex>
+      ) : (
+        <Flex alignItems="center">
+          <input
+            type="text"
+            value={editText}
+            onChange={(e) => setEditText(e.target.value)}
+          />
+          <IconButton
+            icon={<EditIcon />}
+            onClick={handleEdit}
+            ml={2}
+            variant="ghost"
+          />
+        </Flex>
+      )}
+    </Box>
+  );
+};
+
+export default Todo;
