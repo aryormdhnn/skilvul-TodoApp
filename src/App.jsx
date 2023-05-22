@@ -10,8 +10,8 @@ function App() {
     <Container maxW="container.sm">
       <Heading my="4">Todo List</Heading>
       <AddTodo />
-      <TodoList />
       <VisibilityFilter />
+      <TodoList />
     </Container>
   )
 }
